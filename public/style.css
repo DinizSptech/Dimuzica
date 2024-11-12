@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=New+Rocker&display=swap');
+
+.textofonte {
+  font-family: "New Rocker", system-ui;
+  align-self: flex-end;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "New Rocker", system-ui;
+}
+
+/* Definição da barra de scroll */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #6e6e6e; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #0e0e0e; 
+  border: 1mm ridge rgba(0, 0, 0, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff; 
+}
+
+:root {
+  --tamanho-header: 15vh;
+  --tamanho-background: calc(130vh - var(--tamanho-header));
+  --tamanho-social: calc(180vh - var(--tamanho-background))
+}
+
+.header {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--tamanho-header);
+  filter: drop-shadow(0 1px 0.3rem rgba(20, 20, 20, 0.7));
+  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%); */
+} 
+
+.background {
+  height: var(--tamanho-background);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-size: 100px;
+}
+
+#choris{
+  width: 100%;
+  height: 100%;
+}
+
+.login_button_wrap{
+  filter: drop-shadow(0px -20px gray);
+}
+
+.login_button {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 80%;
+  background-color: rgb(255, 255, 255);
+  clip-path: polygon(0 0, 90% 0, 80% 50%, 100% 50%, 90% 100%, 0 100%);
+
+  &:hover {
+    translate: -3px 3px;
+  }
+}
+
+.cadastro_button_wrap{
+  filter: drop-shadow(0px -20px 20px gray);
+}
+
+.cadastro_button {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 80%;
+  margin-left: -4%;
+  background-color: rgb(55, 55, 55);
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 10% 100%, 20% 50%, 0 50%);
+  &:hover {
+    translate: 3px 3px;
+  }
+}
+
+.botaolegal {
+  margin-right: 3%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  justify-self: flex-end;
+  width: 30%;
+  height: 60%;
+}
+.social{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #373737;
+  height: var(--tamanho-social);
+  width: 100%;
+  
+}
+
+.box{
+  clip-path: polygon(0 0, 100% 0%, 100% 72%, 50% 100%, 0 72%);
+  font-size: 20px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 20%;
+  height: 50%;
+}
+
+.holder{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.social_wrap{
+    filter: drop-shadow(0px -20px 20px rgba(20, 20, 20, 0.3));
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 0, 0);
+  width: 100%;
+  height: calc(100vh - var(--tamanho-header));
+}
+
+.info{
+  background-color: rgb(0, 0, 0);
+  color: whitesmoke;
+  filter: drop-shadow(0px -20px 20px rgba(20, 20, 20, 0.3));
+  width: 40%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input{
+box-shadow: 2px 2px #6e6e6e;
+height: 20px;
+}
+
+.input_holder{
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info button{
+  font-family: "New Rocker", system-ui;
+  width: 25%;
+  height: 12%;
+  font-size: 30px;
+  background-color: white;
+  /* clip-path: polygon(0% 1%, 18% 26%, 0% 48%, 17% 65%, 0% 99%, 100% 100%, 88% 72%, 100% 50%, 88% 24%, 100% 0%); */
+  clip-path: polygon(50% 19%, 0% 1%, 22% 28%, 0% 49%, 21% 70%, 0% 100%, 51% 90%, 100% 100%, 81% 69%, 100% 48%, 84% 27%, 100% 0%);
+  &:hover{
+    color: red;
+  }
+}
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
