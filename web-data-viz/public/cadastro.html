@@ -24,14 +24,12 @@
       </div>
     </div>
     <div class="info genero">
-      <input type="checkbox" id="checkRock" class="textobox" oninput="Deci()"><label class="" for="checkRock" onclick="Deci()">Rock clássico</label> |
-      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="Octo()"><label class="" for="chk8" onclick="Octo()">Rock alternativo</label> |
-      <input type="checkbox" id="checkMetal" class="textobox" oninput="Bi()"><label class="" for="checkMetal" onclick="Bi()">Binario</label> |
-      <button class="botao cadastro">Escolher genero</button>
+      <input type="checkbox" id="checkRock" class="textobox" oninput="uncheck_rock()"><label class="select_genero" for="checkRock" onclick="uncheck_rock()">Rock clássico</label> 
+      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label class="select_genero" for="checkAlternativo" onclick="uncheck_alt()">Rock alternativo</label> 
+      <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label class="select_genero" for="checkMetal" onclick="uncheck_metal()">Metal</label> 
     </div>
 
     <div id="pos_genero">
-
       <div class="info">
         <div class="input_holder">
           Usuario
@@ -60,42 +58,39 @@
   </body>
   <script>
         var rock = document.getElementById("checkRock")
-        var alternativo = document.getElementById("checkIndie")
+        var alternativo = document.getElementById("checkAlternativo")
         var metal = document.getElementById("checkMetal")
-        var base
-        function Bi(){
-        base = 'rock'
-        indie.checked = false;
-        experimental.checked = false;
-        metal.checked = false;
-    }
-    function Deci(){
-        base = 'indie'
-        rock.checked = false;
-        metal.checked = false;
-    }
-    function Octo(){
-        base = 'experimental'
-        rock.checked = false;
-        metal.checked = false;
+        var genero
+
+        function selecionar(){
+          if(genero == null){
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+              "Selecione um genero musical";
+            finalizarAguardar();
+            return false;
+          }else {
+            setInterval(sumirMensagem, 5000);
+          }
         }
-        function metal(){
-        base = 'metal'
-        rock.checked = false;
+
+      function uncheck_metal(){
+      genero = 'metal'
+      alternativo.checked = false;
+      rock.checked = false;
+    }
+
+    function uncheck_rock(){
+        genero = 'rock'
         alternativo.checked = false;
-        }
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
-    var genero = null
-  function selecionar(){
-    if(genero == null){
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "As duas senhas devem ser iguais";
-      finalizarAguardar();
-      return false;
+        metal.checked = false;
     }
-  }
+
+    function uncheck_alt(){
+        genero = 'alternativo'
+        rock.checked = false;
+        metal.checked = false;
+    }
 
   function cadastrar() {
     // aguardar();

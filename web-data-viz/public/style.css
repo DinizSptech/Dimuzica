@@ -267,3 +267,9 @@ input .checkbox{
 .genero{
   flex-direction: row;
 }
+
+/* 
+.select_genero{
+  width: 30%;
+  height: 100%;
+} */
