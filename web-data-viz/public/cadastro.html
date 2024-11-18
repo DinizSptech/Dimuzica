@@ -24,14 +24,17 @@
       </div>
     </div>
     <div class="info genero">
-      <input type="checkbox" id="checkRock" class="textobox" oninput="uncheck_rock()"><label class="select_genero" for="checkRock" onclick="uncheck_rock()">Rock clássico</label> 
-      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label class="select_genero" for="checkAlternativo" onclick="uncheck_alt()">Rock alternativo</label> 
-      <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label class="select_genero" for="checkMetal" onclick="uncheck_metal()">Metal</label> 
+      <input type="checkbox" id="checkRock" class="textobox" oninput="uncheck_rock()"><label id="checkRock_label" class="select_genero" for="checkRock" onclick="uncheck_rock()"></label> 
+      <div class="borda"></div>
+      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label id="checkAlternativo_label" class="select_genero" for="checkAlternativo" onclick="uncheck_alt()"></label> 
+      <div class="borda"></div>
+      <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label id="checkMetal_label" class="select_genero" for="checkMetal" onclick="uncheck_metal()"></label> 
     </div>
 
     <div id="pos_genero">
-      <div class="info">
-        <div class="input_holder">
+      <div>
+        <div class="info">
+          <div class="input_holder">
           Usuario
           <input type="text" id="user_input" class="input">
         </div>
@@ -50,6 +53,7 @@
         <button class="botao cadastro" onclick="cadastrar()">Cadastrar</button>
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif">
+        </div>
         </div>
       </div>
     </div>
@@ -78,18 +82,22 @@
       genero = 'metal'
       alternativo.checked = false;
       rock.checked = false;
+      // checkAlternativo_label.style.opacity = '1.0'
     }
 
     function uncheck_rock(){
         genero = 'rock'
         alternativo.checked = false;
         metal.checked = false;
+      // checkAlternativo_label.style.opacity = '1.0'
+
     }
 
     function uncheck_alt(){
         genero = 'alternativo'
         rock.checked = false;
         metal.checked = false;
+      // checkAlternativo_label.style.opacity = '1.0'
     }
 
   function cadastrar() {

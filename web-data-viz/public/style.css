@@ -34,7 +34,8 @@ body {
 :root {
   --tamanho-header: 15vh;
   --tamanho-background: calc(130vh - var(--tamanho-header));
-  --tamanho-social: calc(180vh - var(--tamanho-background))
+  --tamanho-social: calc(180vh - var(--tamanho-background));
+  --largura_genero: calc(98vw / 3);
 }
 
 .header {
@@ -249,11 +250,14 @@ height: 20px;
 #pos_genero{
   width: 40%;
   height: 70%;
+  display: none;
 }
 
 input[type=checkbox]:checked + label{
   color: yellow;  
   cursor: pointer;
+  width: calc(var(--largura_genero) + 10vw);
+  opacity: 1;
 }
 
 input .checkbox{
@@ -268,8 +272,47 @@ input .checkbox{
   flex-direction: row;
 }
 
-/* 
 .select_genero{
-  width: 30%;
+  width: var(--largura_genero);
+  opacity: 0.8;
   height: 100%;
-} */
+  transition: width 2s;
+  &:hover{
+    cursor: pointer;
+    width: calc(var(--largura_genero) + 10vw);
+    opacity: 1;
+  }
+}
+
+input[type=checkbox]:checked + label{
+  background-color: white;
+}
+
+.borda{
+  background-color: #373737;
+  width: 1vw;
+  height: 100%;
+}
+
+#checkRock_label{
+background-image: url(./assets/frediemercurio.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+
+#checkAlternativo_label{
+  background-image: url(./assets/thomyorke.jpg);
+  background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+transition: width 2s;
+}
+
+#checkMetal_label{
+  background-image: url(./assets/freddurst.jpg);
+  background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
