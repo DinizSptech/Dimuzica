@@ -23,35 +23,79 @@
         <span id="mensagem_erro"></span>
       </div>
     </div>
-    <div class="info">
-      <div class="input_holder">
-        Usuario
-        <input type="text" id="user_input" class="input">
-      </div>
-      <div class="input_holder">
-        Email
-        <input type="text" id="email_input" class="input">
-      </div>
-      <div class="input_holder">  
-        Senha
-        <input type="password" id="senha_input" class="input">
-      </div>
-      <div class="input_holder">  
-        Confirme a sua senha
-        <input type="password" id="confirmacao_senha_input" class="input">
-      </div>
-      <button class="botao cadastro" onclick="cadastrar()">Cadastrar</button>
-      <div id="div_aguardar" class="loading-div">
-        <img src="./assets/circle-loading.gif" id="loading-gif">
+    <div class="info genero">
+      <input type="checkbox" id="checkRock" class="textobox" oninput="Deci()"><label class="" for="checkRock" onclick="Deci()">Rock clássico</label> |
+      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="Octo()"><label class="" for="chk8" onclick="Octo()">Rock alternativo</label> |
+      <input type="checkbox" id="checkMetal" class="textobox" oninput="Bi()"><label class="" for="checkMetal" onclick="Bi()">Binario</label> |
+      <button class="botao cadastro">Escolher genero</button>
     </div>
+
+    <div id="pos_genero">
+
+      <div class="info">
+        <div class="input_holder">
+          Usuario
+          <input type="text" id="user_input" class="input">
+        </div>
+        <div class="input_holder">
+          Email
+          <input type="text" id="email_input" class="input">
+        </div>
+        <div class="input_holder">  
+          Senha
+          <input type="password" id="senha_input" class="input">
+        </div>
+        <div class="input_holder">  
+          Confirme a sua senha
+          <input type="password" id="confirmacao_senha_input" class="input">
+        </div>
+        <button class="botao cadastro" onclick="cadastrar()">Cadastrar</button>
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif">
+        </div>
+      </div>
     </div>
 
   </div>
   </body>
   <script>
-
+        var rock = document.getElementById("checkRock")
+        var alternativo = document.getElementById("checkIndie")
+        var metal = document.getElementById("checkMetal")
+        var base
+        function Bi(){
+        base = 'rock'
+        indie.checked = false;
+        experimental.checked = false;
+        metal.checked = false;
+    }
+    function Deci(){
+        base = 'indie'
+        rock.checked = false;
+        metal.checked = false;
+    }
+    function Octo(){
+        base = 'experimental'
+        rock.checked = false;
+        metal.checked = false;
+        }
+        function metal(){
+        base = 'metal'
+        rock.checked = false;
+        alternativo.checked = false;
+        }
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   // let listaEmpresasCadastradas = [];
+    var genero = null
+  function selecionar(){
+    if(genero == null){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "As duas senhas devem ser iguais";
+      finalizarAguardar();
+      return false;
+    }
+  }
 
   function cadastrar() {
     // aguardar();
@@ -82,17 +126,65 @@
     }
 
     var validar = '!@#$%&*()'
-    var inclui = false
-    for(var i = 0; i < validar.length && inclui == false; i++){
+    var inclui$User = false
+    var inclui$enha = false
+    for(var i = 0; i < validar.length && (inclui$User == false || inclui$enha == false); i++){
       if(nomeVar.includes(validar[i])){
-        inclui = true
+        inclui$User = true
+      }
+      if(senhaVar.includes(validar[i])){
+        inclui$enha = true
       }
     }
-    if (inclui){
+
+
+    if (nomeVar.length > 30){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(O nome não pode ter caracteres especiais)";
+        "O nome deve ter menos de 30 caracteres";
 
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (inclui$User){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "O nome não pode ter caracteres especiais";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (senhaVar.length < 8){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "A senha deve ter mais de 7 caracteres";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (!inclui$enha){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "A senha deve ter pelo menos 1 caracter especial";
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (senhaVar != confirmacaoSenhaVar){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "As duas senhas devem ser iguais";
       finalizarAguardar();
       return false;
     } else {
