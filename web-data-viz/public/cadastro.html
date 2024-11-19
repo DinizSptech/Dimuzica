@@ -11,6 +11,7 @@
 </head>
 <body>
   <div class="header">
+    <button class="button_genero" onclick="selecionar_genero()">Selecionar genero</button>
     <div class="botaolegal">
       <div class="login_button" onclick="local_login()">Login</div>
       <div class="cadastro_button" onclick="local_cadastro()">Cadastro</div>
@@ -23,16 +24,16 @@
         <span id="mensagem_erro"></span>
       </div>
     </div>
-    <div class="info genero">
-      <input type="checkbox" id="checkRock" class="textobox" oninput="uncheck_rock()"><label id="checkRock_label" class="select_genero" for="checkRock" onclick="uncheck_rock()"></label> 
+    <div class="info genero" id="pre_genero">
+      <input type="checkbox" id="checkRock" class="textobox" oninput="uncheck_rock()"><label id="checkRock_label" class="select_genero" for="checkRock" onclick="uncheck_rock()"><div class="genero_titulo" id="hard">Hard Rock</div></label> 
       <div class="borda"></div>
-      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label id="checkAlternativo_label" class="select_genero" for="checkAlternativo" onclick="uncheck_alt()"></label> 
+      <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label id="checkAlternativo_label" class="select_genero" for="checkAlternativo" onclick="uncheck_alt()"><div class="genero_titulo" id="alt">Rock Alternativo</div></label> 
       <div class="borda"></div>
-      <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label id="checkMetal_label" class="select_genero" for="checkMetal" onclick="uncheck_metal()"></label> 
+      <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label id="checkMetal_label" class="select_genero" for="checkMetal" onclick="uncheck_metal()"><div class="genero_titulo" id="met">Metal</div></label> 
     </div>
 
     <div id="pos_genero">
-      <div>
+      
         <div class="info">
           <div class="input_holder">
           Usuario
@@ -53,7 +54,7 @@
         <button class="botao cadastro" onclick="cadastrar()">Cadastrar</button>
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif">
-        </div>
+        
         </div>
       </div>
     </div>
@@ -82,29 +83,35 @@
       genero = 'metal'
       alternativo.checked = false;
       rock.checked = false;
-      // checkAlternativo_label.style.opacity = '1.0'
     }
 
     function uncheck_rock(){
         genero = 'rock'
         alternativo.checked = false;
         metal.checked = false;
-      // checkAlternativo_label.style.opacity = '1.0'
-
     }
 
     function uncheck_alt(){
         genero = 'alternativo'
         rock.checked = false;
         metal.checked = false;
-      // checkAlternativo_label.style.opacity = '1.0'
     }
-
+  function selecionar_genero(){
+    if(genero == undefined){
+      alert('Selecione um genero')
+      return
+    }
+    console.log(genero)
+    pre_genero.style.display = 'none'
+    pos_genero.style.display = 'block'
+    }  
+    
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo user do id
     // Agora vá para o método fetch logo abaixo
+    var generoVar = genero
     var nomeVar = user_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
@@ -204,6 +211,7 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
+        generoServer: generoVar,
         emailServer: emailVar,
         senhaServer: senhaVar
       }),
