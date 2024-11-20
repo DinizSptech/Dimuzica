@@ -4,11 +4,12 @@
   function local_cadastro(){
     window.location.href = 'cadastro.html'
   }
-
-  function login(){
-
+  function local_sobremim(){
+    window.location.href = 'Sobremim.html'
   }
-
-  function cadastro(){
-
+  function local_estatisticas(){
+    window.location.href = 'estatistica.html'
+  }
+  function local_index(){
+    window.location.href = 'index.html'
   }

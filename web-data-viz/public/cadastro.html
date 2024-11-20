@@ -9,16 +9,17 @@
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
   <script src="./js/sessao.js"></script>
 </head>
-<body>
+<body class="home">
   <div class="header">
-    <button class="button_genero" onclick="selecionar_genero()">Selecionar genero</button>
+    <div class="inicio_header">aaa</div>
+    <div class="linha"></div>
     <div class="botaolegal">
       <div class="login_button" onclick="local_login()">Login</div>
       <div class="cadastro_button" onclick="local_cadastro()">Cadastro</div>
+      </div>
     </div>
   </div>
   <div class="container">
-    
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
@@ -30,6 +31,7 @@
       <input type="checkbox" id="checkAlternativo" class="textobox" oninput="uncheck_alt()"><label id="checkAlternativo_label" class="select_genero" for="checkAlternativo" onclick="uncheck_alt()"><div class="genero_titulo" id="alt">Rock Alternativo</div></label> 
       <div class="borda"></div>
       <input type="checkbox" id="checkMetal" class="textobox" oninput="uncheck_metal()"><label id="checkMetal_label" class="select_genero" for="checkMetal" onclick="uncheck_metal()"><div class="genero_titulo" id="met">Metal</div></label> 
+      <button class="button_genero" onclick="selecionar_genero()"> Selecionar genero</button>
     </div>
 
     <div id="pos_genero">
@@ -97,7 +99,7 @@
         metal.checked = false;
     }
   function selecionar_genero(){
-    if(genero == undefined){
+    if(genero == undefined || (rock.checked == false && alternativo.checked == false && metal.checked == false)){
       alert('Selecione um genero')
       return
     }
