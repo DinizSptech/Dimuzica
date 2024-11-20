@@ -11,6 +11,7 @@ body {
   font-family: "New Rocker", system-ui;
   margin: 0;
   padding: 0;
+  background: radial-gradient(circle, rgba(125,0,0,1) 13%, rgba(46,22,22,1) 100%);
 }
 
 /* Definição da barra de scroll */
@@ -47,7 +48,6 @@ body {
   justify-content: flex-end;
   height: var(--tamanho-header);
   filter: drop-shadow(0 1px 0.3rem rgba(20, 20, 20, 0.7));
-  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%); */
 } 
 
 .button_genero{
@@ -72,7 +72,7 @@ body {
   height: 60%;
   background: #373737;
   border-radius: 20px;
-  filter: drop-shadow(0px 0px 20px gray);
+  filter: drop-shadow(0px 0px 20px black);
 }
 
 .home .texto{

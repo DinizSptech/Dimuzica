@@ -11,13 +11,16 @@ genero varchar(20),
 check (genero in('alternativo','metal','rock'))
 );
 
-CREATE TABLE musica(
+CREATE TABLE IF NOT EXISTS musica(
 idMusica int primary key auto_increment,
-foto varchar(500),
+genero varchar(20),
+titulo varchar(30),
 audio varchar(500)
 );
 
 SELECT * FROM usuario;
+
+TRUNCATE usuario;
 
 describe usuario;
 
