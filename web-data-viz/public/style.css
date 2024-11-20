@@ -104,6 +104,10 @@ body {
   background: #373737;
   border-radius: 20px;
   filter: drop-shadow(0px 0px 20px black);
+  transition: all 1s;
+  &:hover{
+    scale: 1.4;
+  }
 }
 
 .home .texto{

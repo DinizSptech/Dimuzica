@@ -7,7 +7,7 @@
   function local_sobremim(){
     window.location.href = 'Sobremim.html'
   }
-  function local_estatisticas(){
+  function local_estatistica(){
     window.location.href = 'estatistica.html'
   }
   function local_index(){
