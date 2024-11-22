@@ -7,6 +7,7 @@
   <title>Dimuzica</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>     
 </head>
 <body class="home">
   <div class="header">
@@ -29,4 +30,45 @@
         <div class="login_button" onclick="local_login()">Login</div>
         <div class="cadastro_button" onclick="local_cadastro()">Cadastro</div>
       </div>
-    </div>
+    </div></style>
+    <body>
+        <div class="dashboards">
+            <div>
+                <canvas id="myChart" style="height: 80vh; width: 40vw;"></canvas>
+            </div>
+            <div>
+                <canvas id="myChart2" style="height: 80vh; width: 40vw;"></canvas>
+            </div>
+        </div>
+    
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+      <script>
+        const ctx = document.getElementById("myChart");
+        var dados = sessionStorage.dados_genero
+        new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["alternativo", "metal", "rock"],
+            datasets: [
+            {
+                label: ["ouvintes"],
+                borderColor:['rgb(250, 67, 198)', 'rgb(171, 24, 19)', 'rgb(255, 132, 0)'],
+                backgroundColor: ['rgb(250, 67, 198)', 'rgb(171, 24, 19)', 'rgb(255, 132, 0)'],
+                data: [1,2,3],
+                borderWidth: 3,
+              }
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+    
+      </script>
+    </body>
+    
