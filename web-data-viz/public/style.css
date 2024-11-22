@@ -213,7 +213,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(248, 0, 0);
+  background: radial-gradient(circle, rgba(125,0,0,1) 13%, rgba(46,22,22,1) 100%);  
   width: 100%;
   height: calc(100vh - var(--tamanho-header));
 }
@@ -376,4 +376,12 @@ background-image: url(./assets/frediemercurio.jpg);
 
 #checkMetal_label{
   background-image: url(./assets/freddurst.jpg);
+}
+
+.musicas_display{
+  display: flex;
+  flex-direction: column; 
+  width: 80%;
+  height: 100%;
+  background-color: white;
 }

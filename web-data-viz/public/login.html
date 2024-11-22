@@ -11,14 +11,26 @@
 </head>
 <body class="home">
   <div class="header">
-    <div class="inicio_header">aaa</div>
+    <div class="inicio_header">
+      <div class="header_button" onclick="local_estatistica()">
+        <img src="./assets/stats.png"  alt="estatisticas">
+        <div>Estatisticas</div>
+      </div>
+      <div  class="header_button" onclick="local_sobremim()">
+        <img src="./assets/vinil.png" alt="vinil"> 
+        <div>Sobre mim</div>
+      </div>
+      <div class="header_button" onclick="local_index()">
+        <img src="./assets/home.png"  alt="estatisticas"> 
+        <div>Início</div>
+      </div>
+    </div>
     <div class="linha"></div>
       <div class="botaolegal">
         <div class="login_button" onclick="local_login()">Login</div>
         <div class="cadastro_button" onclick="local_cadastro()">Cadastro</div>
       </div>
     </div>
-  </div>
   <div class="container">
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
@@ -84,7 +96,7 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.GENERO_USUARIO = json.genero;
 
                     setTimeout(function () {
                         window.location = "./musicas.html";

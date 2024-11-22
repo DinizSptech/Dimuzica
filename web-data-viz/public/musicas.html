@@ -29,8 +29,23 @@
         <div class="login_button" onclick="local_login()">Login</div>
         <div class="cadastro_button" onclick="local_cadastro()">Cadastro</div>
       </div>
+    </div>
+    <div class="container">
       <div class="musicas_display">
-
+        <div class="musicas_genero">
+          <div>Músicas do genero <span id="genero_user"></span></div>
+          
+        </div>
       </div>
     </div>
     </body>
+    <script>
+      var genero = sessionStorage.GENERO_USUARIO
+      if(genero == 'rock'){
+        genero_user.innerHTML = `hard rock`
+      } else {
+        genero_user.innerHTML = genero
+
+      }
+
+    </script>
