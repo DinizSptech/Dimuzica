@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>     
 </head>
-<body class="home">
+<body class="home" onload="mostrarGrafico()">
   <div class="header">
     <div class="inicio_header">
       <div class="header_button" onclick="local_estatistica()">
@@ -34,41 +34,58 @@
     <body>
         <div class="dashboards">
             <div>
-                <canvas id="myChart" style="height: 80vh; width: 40vw;"></canvas>
-            </div>
-            <div>
-                <canvas id="myChart2" style="height: 80vh; width: 40vw;"></canvas>
+                <canvas id="grafico" style="height: 80vh; width: 40vw;"></canvas>
             </div>
         </div>
     
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
       <script>
-        const ctx = document.getElementById("myChart");
-        var dados = sessionStorage.dados_genero
-        new Chart(ctx, {
-          type: "pie",
-          data: {
-            labels: ["alternativo", "metal", "rock"],
-            datasets: [
-            {
-                label: ["ouvintes"],
-                borderColor:['rgb(250, 67, 198)', 'rgb(171, 24, 19)', 'rgb(255, 132, 0)'],
-                backgroundColor: ['rgb(250, 67, 198)', 'rgb(171, 24, 19)', 'rgb(255, 132, 0)'],
-                data: [1,2,3],
-                borderWidth: 3,
-              }
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        });
+        var listaGenero = [];
+        var listaNumero = [];
+        var generoAtual = '';
+        var numeroAtual = '';
+          
+        function mostrarGrafico() {
+          fetch("/grafico/grafico-dados", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+          }).then(function (resposta) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    
+                    for(var cont = 0; cont < (json.lista).length; cont++) {
+                      generoAtual = json.lista[cont].genero;
+                      numeroAtual = json.lista[cont].qtd;               
+
+                      listaGenero.push(generoAtual);
+                      listaNumero.push(numeroAtual);
+
+                    }
     
+                  const ctx = document.getElementById("grafico");
+                  
+                  new Chart(ctx, {
+                    type: "pie",
+                    data: {
+                      labels: listaGenero,
+                      datasets: [{
+                          data: listaNumero,
+                          backgroundColor: ['rgb(250, 67, 198)', 'rgb(171, 24, 19)', 'rgb(255, 132, 0)'],
+                          borderColor:['rgb(0,0,0)'],
+                          borderWidth: 3,
+                        }
+                      ],
+                    },
+                      
+                    
+                  });
+                })
+              })
+            }
       </script>
     </body>
     
