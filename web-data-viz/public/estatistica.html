@@ -59,9 +59,9 @@
                     
                     for(var cont = 0; cont < (json.lista).length; cont++) {
                       generoAtual = json.lista[cont].genero;
-                      numeroAtual = json.lista[cont].qtd;               
+                      numeroAtual = json.lista[cont].qtd;            
 
-                      listaGenero.push(generoAtual);
+                      listaGenero.push((json.lista[cont]).genero);
                       listaNumero.push(numeroAtual);
 
                     }

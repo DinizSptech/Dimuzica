@@ -5,7 +5,7 @@ USE dimuzica;
 CREATE TABLE IF NOT EXISTS usuario(
 idUsuario int primary key auto_increment,
 nome varchar(30),
-email varchar(255),
+email varchar(255) UNIQUE,
 senha varchar(255),
 genero varchar(20),
 check (genero in('alternativo','metal','rock'))
@@ -27,8 +27,8 @@ foreign key (fkMusica) references musica(idMusica)
 );
 
 -- Apague o comentário para inserir
-/*
-INSERT INTO usuario (nome, email, senha, genero) VALUES
+
+INSERT INTO usuario(nome, email, senha, genero) VALUES
 ('Alexandre Silva', 'alexandre.silva@email.com', 'Alex@1234', 'rock'),
 ('Isabela Oliveira', 'isabela.oliveira@email.com', 'Isabela!2024', 'metal'),
 ('Gustavo Costa', 'gustavo.costa@email.com', 'Gust@vo@123', 'alternativo'),
@@ -74,7 +74,6 @@ INSERT INTO usuario (nome, email, senha, genero) VALUES
 ('Mariana Souza', 'mariana.souza@email.com', 'Mari@na!2024', 'metal'),
 ('João Costa', 'joao.costa@email.com', 'J0ao@2024#', 'rock'),
 ('Leonardo Pereira', 'leonardo.pereira@email.com', 'Leo@12345', 'alternativo'),
-('Cátia Oliveira', 'catia.oliveira@email.com', 'C@tia#1234', 'metal'),
 ('Juliano Almeida', 'juliano.almeida@email.com', 'Juli@no2024$', 'rock'),
 ('Ricardo Lima', 'ricardo.lima@email.com', 'Ric@rdo1234', 'alternativo'),
 ('Carla Santos', 'carla.santos@email.com', 'Carla!@123', 'metal'),
@@ -92,13 +91,26 @@ INSERT INTO usuario (nome, email, senha, genero) VALUES
 ('Marcio Silva', 'marcio.silva@email.com', 'M@rcio!2024', 'metal'),
 ('Sérgio Pereira', 'sergio.pereira@email.com', 'S3rgio@2024', 'rock'),
 ('Amanda Rocha', 'amanda.rocha@email.com', 'Amand@123', 'alternativo'),
-('Eduardo Almeida', 'eduardo.almeida@email.com', 'Edu@ardo1234', 'metal'),
-('Renata Souza', 'renata.souza@email.com', 'Ren@ta!1234', 'rock'),
-('Gabriela Lima', 'gabriela.lima@email.com', 'Gabriela@!2024', 'alternativo'),
 ('Flávio Oliveira', 'flavio.oliveira@email.com', 'Flav!o1234', 'metal'),
 ('Tânia Martins', 'tania.martins@email.com', 'T@nia2024', 'rock'),
 ('Márcio Costa', 'marcio.costa@email.com', 'M@rcio123', 'alternativo'),
 ('Sandra Silva', 'sandra.silva@email.com', 'S@ndra!2024', 'metal');
-*/
 
-SELECT genero,count(genero) FROM usuario GROUP BY genero;
+INSERT INTO musica(idMusica,titulo) VALUES
+(1, 'Karma police'),
+(2, 'Bohemian Rhapsody'),
+(3, 'Breaks stuff');
+
+SELECT genero,count(genero) as 'qtd' FROM usuario GROUP BY genero;
+
+INSERT INTO curtida VALUES 
+(1, 1), (1, 2), (1, 3),
+(2, 1), (2, 2), (2, 3),
+(3, 1), (3, 2), (3, 3),
+(4, 1), (4, 2), (4, 3),
+(5, 1), (5, 2), (5, 3),
+(6, 1), (6, 2), (6, 3),
+(7, 1), (7, 2), (7, 3);
+
+SELECT titulo, count(fkMusica) FROM curtida JOIN musica ON fkMusica = idMusica
+GROUP BY titulo;
