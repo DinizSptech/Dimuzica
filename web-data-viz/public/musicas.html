@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
 </head>
-<body class="home">
+<body class="home" onload="carregarMusica()">
   <div class="header">
     <div class="inicio_header">
       <div class="header_button" onclick="local_estatistica()">
@@ -34,18 +34,15 @@
       <div class="musicas_display">
         <div class="musicas_genero">
           <div>Músicas do genero <span id="genero_user"></span></div>
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0gTRROuntlrPQ64W3J2Etv?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica1"></iframe>
+          <iframe style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica2"></iframe>
+
         </div>
       </div>
     </div>
     </body>
     <script>
-      var genero = sessionStorage.GENERO_USUARIO
-      if(genero == 'rock'){
-        genero_user.innerHTML = `hard rock`
-      } else {
-        genero_user.innerHTML = genero
-
-      }
+      genero_user.innerHTML = sessionStorage.GENERO
+      var musicas = []
 
     </script>
