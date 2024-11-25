@@ -408,9 +408,16 @@ background-image: url(./assets/frediemercurio.jpg);
 .musicas_display{
   display: flex;
   flex-direction: column; 
+  padding-top: 400vh;
   width: 80%;
-  height: 100%;
   background-color: white;
+}
+
+.musicas_genero{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
 }
 
 .dashboards{

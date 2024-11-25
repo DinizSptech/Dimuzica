@@ -5,12 +5,12 @@ function generoMusica(req, res) {
         musicaModel.pegarGenero()
             .then( function (resultadoAutenticar){
                 res.json({
-                  lista: resultadoAutenticar
+                  musica_genero: resultadoAutenticar
                 });
             }).catch(
                 function (erro){
                     console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    console.log("\nErro em pegar musicas de genero X! Erro: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -21,12 +21,12 @@ function generoMusica(req, res) {
             musicaModel.pegarTodas()
                 .then( function (resultadoAutenticar){
                     res.json({
-                      lista: resultadoAutenticar
+                      musica_todas: resultadoAutenticar
                     });
                 }).catch(
                     function (erro) {
                         console.log(erro);
-                        console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                        console.log("\nErro em pegar todas as musicas! Erro:", erro.sqlMessage);
                         res.status(500).json(erro.sqlMessage);
                     }
                 );

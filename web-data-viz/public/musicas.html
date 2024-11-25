@@ -34,15 +34,52 @@
       <div class="musicas_display">
         <div class="musicas_genero">
           <div>Músicas do genero <span id="genero_user"></span></div>
-          <iframe style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica1"></iframe>
-          <iframe style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica2"></iframe>
-
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica1"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica2"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica3"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica4"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica5"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica6"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica7"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica8"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica9"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica10"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica11"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica12"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica13"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica14"></iframe>
+          <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica15"></iframe>
         </div>
       </div>
     </div>
     </body>
     <script>
-      genero_user.innerHTML = sessionStorage.GENERO
+      genero_user.innerHTML = sessionStorage.GENERO_USUARIO;
       var musicas = []
 
+      //  FOR DENTRO DE FOR PARA VALIDAR A MUSICA, UM FALA A DIV O OUTRO VERIFICA SE A MUSICA JA ESTA NA LISTA
+      function carregarMusica(){
+        fetch("/musica/musica-geral", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+          }).then(function (resposta) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    
+                    var musicas = []
+                    for(var cont = 1; cont <= 15; cont++) {
+                      var musica_aleatoria = Number(Math.floor(Math.random() * 54))
+                      while(musicas.includes(musica_aleatoria)){
+                        musica_aleatoria  = Number(Math.floor(Math.random() * 54))
+                        console.log('Inclui')
+                      }
+                      musicas.push(musica_aleatoria)
+                    document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio
+                    }                    
+                  });
+                })
+              }
     </script>
