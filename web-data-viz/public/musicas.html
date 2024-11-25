@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
 </head>
-<body class="home" onload="carregarMusica()">
+<body class="background_musicas" onload="carregarMusica()">
   <div class="header">
     <div class="inicio_header">
       <div class="header_button" onclick="local_estatistica()">
@@ -39,6 +39,7 @@
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica3"></iframe>
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica4"></iframe>
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica5"></iframe>
+          <div>Músicas aleatórias</div>
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica6"></iframe>
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica7"></iframe>
           <iframe style="border-radius:12px" src="" width="80%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="musica8"></iframe>
@@ -54,6 +55,7 @@
     </div>
     </body>
     <script>
+      var genero = sessionStorage.GENERO_USUARIO;
       genero_user.innerHTML = sessionStorage.GENERO_USUARIO;
       var musicas = []
 
@@ -72,12 +74,21 @@
                     var musicas = []
                     for(var cont = 1; cont <= 15; cont++) {
                       var musica_aleatoria = Number(Math.floor(Math.random() * 54))
-                      while(musicas.includes(musica_aleatoria)){
-                        musica_aleatoria  = Number(Math.floor(Math.random() * 54))
-                        console.log('Inclui')
-                      }
+                      if(cont <= 5){
+                        while(musicas.includes(musica_aleatoria) || json.musica_todas[musica_aleatoria].genero != genero){
+                          musica_aleatoria  = Number(Math.floor(Math.random() * 54))
+                          console.log('Inclui ou não é ' + genero)
+                        }
+                      document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio
+                        musicas.push(musica_aleatoria)
+                      } else {
+                        while(musicas.includes(musica_aleatoria)){
+                          musica_aleatoria  = Number(Math.floor(Math.random() * 54))
+                          console.log('Inclui')
+                        }
                       musicas.push(musica_aleatoria)
-                    document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio
+                      document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio
+                    }
                     }                    
                   });
                 })

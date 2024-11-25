@@ -1,8 +1,10 @@
 var musicaModel = require("../models/musicaModel");
 
 function generoMusica(req, res) {
+    var genero = req.body.generoServer;
+    
   console.log('generoMusica')
-        musicaModel.pegarGenero()
+        musicaModel.pegarGenero(genero)
             .then( function (resultadoAutenticar){
                 res.json({
                   musica_genero: resultadoAutenticar
