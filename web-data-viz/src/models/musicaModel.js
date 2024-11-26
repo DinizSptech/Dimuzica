@@ -21,7 +21,7 @@ function delete_curtida(musica, usuario) {
 function ver_curtidas(usuario) {
   console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function ver_curtidas(): ")
   var instrucaoSql = `
-      SELECT * FROM curtida WHERE fkUsuario = ${usuario};
+      SELECT fkMusica FROM curtida WHERE fkUsuario = ${usuario};
   `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

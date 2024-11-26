@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>     
 </head>
-<body class="home" onload="mostrarGrafico()">
+<body class="home" onload="mostrarLikes()">
   <div class="header">
     <div class="inicio_header">
       <div class="header_button" onclick="local_estatistica()">
@@ -34,17 +34,66 @@
     <body>
         <div class="dashboards">
             <div>
-                <canvas id="grafico" style="height: 80vh; width: 40vw;"></canvas>
+              Gráfico de quantidade de usuários por genero
+                <canvas id="grafico1" style="height: 80vh; width: 40vw;"></canvas>
+            </div>
+            <div>
+              Gráfico de curtidas
+              <canvas id="grafico2" style="height: 80vh; width: 40vw;"></canvas>
             </div>
         </div>
     
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
       <script>
-        var listaGenero = [];
-        var listaNumero = [];
-        var generoAtual = '';
-        var numeroAtual = '';
+        var generos = []
+        var numeros = []
+        var musicas = []
+        var curtidas = []
+
+        
+
+        function mostrarLikes() {
+          fetch("/grafico/grafico-likes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+          }).then(function (resposta) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    for(var cont = 0; cont < (json.likes).length; cont++){
+                      var curtida_atual = json.likes[cont].qtd_likes
+                      var musica_atual = json.likes[cont].titulo
+
+                      musicas.push(musica_atual)
+                      curtidas.push(curtida_atual)
+                    }
+                    
+    
+                  const ctx = document.getElementById("grafico2");
+
+
+                  
+                  new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                    labels: musicas,  
+                    datasets: [{
+                      data: curtidas,  
+                      backgroundColor: ['rgb(255, 0, 0)', 'rgb(255, 165, 0)', 'rgb(255, 255, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)', 'rgb(75, 0, 130)', 'rgb(238, 130, 238)'],
+                      borderColor: ['rgb(0,0,0)'],
+                      borderWidth: 3,
+                        }]
+                      }
+          }
+        );
+                  mostrarGrafico()
+                })
+              })
+            }
           
         function mostrarGrafico() {
           fetch("/grafico/grafico-dados", {
@@ -58,22 +107,22 @@
                     console.log(JSON.stringify(json));
                     
                     for(var cont = 0; cont < (json.lista).length; cont++) {
-                      generoAtual = json.lista[cont].genero;
-                      numeroAtual = json.lista[cont].qtd;            
+                      var genero_atual = json.lista[cont].genero;
+                      var numero_atual = json.lista[cont].qtd_genero;            
 
-                      listaGenero.push((json.lista[cont]).genero);
-                      listaNumero.push(numeroAtual);
+                      generos.push((json.lista[cont]).genero);
+                      numeros.push(numero_atual);
 
                     }
     
-                  const ctx = document.getElementById("grafico");
+                  const ctx = document.getElementById("grafico1");
                   
                   new Chart(ctx, {
                     type: "pie",
                     data: {
-                      labels: listaGenero,
+                      labels: generos,
                       datasets: [{
-                          data: listaNumero,
+                          data: numeros,
                           backgroundColor: [ 'rgb(255, 132, 0)','rgb(171, 24, 19)', 'rgb(250, 67, 198)',],
                           borderColor:['rgb(0,0,0)'],
                           borderWidth: 3,
@@ -85,7 +134,10 @@
                   });
                 })
               })
-            }
+            } 
+            
+
+
       </script>
     </body>
     

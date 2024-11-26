@@ -106,11 +106,11 @@
                     console.log(JSON.stringify(json));
 
 
-                  for(var cont = 1; cont<= 15; cont++){
-                    for(var cont1 = 0; cont < json.curtidas.length; cont++){{
-                      if(musicas[cont] == json.curtidas[cont1].fkMusica){ 
-                        alert('ACHEI')
-                        document.getElementById(`like_${cont}`).innerHTML = `<div class='descurtido' onclick='descurtir(${musicas[cont]})'></div>`
+                  for(var idDiv = 1; idDiv<= 15; idDiv++){
+                    for(var cont = 0; cont < json.curtidas.length; cont++){{
+                      if(musicas[idDiv] == json.musica_todas[musica_aleatoria].audio){ 
+                        console.log('Musica já curtida')
+                        document.getElementById(`like_${idDiv}`).innerHTML = true
                       }
                       }
                     }
@@ -133,7 +133,7 @@
                     for(var cont = 1; cont <= 15; cont++) {
                       var musica_aleatoria = Number(Math.floor(Math.random() * Number(json.musica_todas.length)))
                       if(cont <= 5){
-                        while(musicas.includes(musica_aleatoria) || json.musica_todas[musica_aleatoria].genero != genero){
+                        while(musicas.includes(musica_aleatoria + 1) || json.musica_todas[musica_aleatoria].genero != genero){
                           musica_aleatoria  = Number(Math.floor(Math.random() * Number(json.musica_todas.length)))
                           console.log(')Inclui ou não é ' + genero)
                         }
@@ -142,7 +142,7 @@
                       document.getElementById(`div_${cont}`).innerHTML += `<input type='checkbox' style='display: none' id='chk_${cont}'>`;
                       document.getElementById(`div_${cont}`).innerHTML += `<div class='like' id='like_${cont}' onclick='curtir(${musicas[cont - 1]}, ${cont})'></div>`
                       } else {
-                        while(musicas.includes(musica_aleatoria)){
+                        while(musicas.includes(musica_aleatoria + 1)){
                           musica_aleatoria  = Number(Math.floor(Math.random() * Number(json.musica_todas.length)))
                           console.log('Inclui')
                         }

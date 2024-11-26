@@ -10,4 +10,4 @@ router.post("/grafico-dados", function (req, res) {
 router.post("/grafico-likes", function (req, res) {
     graficoController.buscarLikes(req, res);
 });
-module.exports = router;    
+module.exports = router;     

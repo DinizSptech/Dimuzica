@@ -2,7 +2,7 @@ var graficoModel = require("../models/graficoModel");
 
 function buscarGrafico(req, res) {
   console.log('buscarGrafico')
-        graficoModel.buscar()
+        graficoModel.buscar_genero()
             .then( function (resultadoAutenticar) {
                 res.json({
                   lista: resultadoAutenticar
@@ -16,12 +16,12 @@ function buscarGrafico(req, res) {
             );
     }
 
-    function buscarGrafico(req, res) {
-        console.log('buscarGrafico')
-              graficoModel.buscar()
+    function buscarLikes(req, res) {
+        console.log('buscarLikes')
+              graficoModel.buscar_likes()
                   .then( function (resultadoAutenticar) {
                       res.json({
-                        lista: resultadoAutenticar
+                        likes: resultadoAutenticar
                       });
                   }).catch(
                       function (erro) {
@@ -33,5 +33,6 @@ function buscarGrafico(req, res) {
           }
 
 module.exports = {
-    buscarGrafico
+    buscarGrafico,
+    buscarLikes
 }
