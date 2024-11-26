@@ -19,22 +19,21 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json(resultadoAutenticar[0])
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        genero: resultadoAutenticar[0].genero
+                                    // res.json({
+                                    //     id: resultadoAutenticar[0].id,
+                                    //     email: resultadoAutenticar[0].email,
+                                    //     nome: resultadoAutenticar[0].nome,
+                                    //     senha: resultadoAutenticar[0].senha,
+                                    //     genero: resultadoAutenticar[0].genero
 
-                                        // lista: resultadoAutenticar;
-                                    });
+                                    //     // lista: resultadoAutenticar;
+                                    // });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
-                }
-            ).catch(
+                }).catch(
                 function (erro) {
                     console.log(erro);
                     console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);

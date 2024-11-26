@@ -41,11 +41,11 @@
 
       <div class="input_holder">
         Email
-        <input type="text" id="email_input" class="input">
+        <input type="text" id="email_input" class="input" value="t1">
       </div>
       <div class="input_holder">  
         Senha
-        <input type="password" id="senha_input" class="input">
+        <input type="password" id="senha_input" class="input" value="1234@@@@">
       </div>
       <button onclick="entrar()">Login</button>
       <div id="div_aguardar" class="loading-div">
@@ -96,7 +96,7 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.GENERO_USUARIO = json.genero;
 
                     setTimeout(function () {
