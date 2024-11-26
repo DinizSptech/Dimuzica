@@ -92,7 +92,6 @@
 
 
       function ver_curtidas(){
-        alert('cheguei2')
         fetch("/musica/musica-verlikes", {
             method: "POST",
             headers: {
@@ -120,7 +119,6 @@
       })})}
       
       //  FOR DENTRO DE FOR PARA VALIDAR A MUSICA, UM FALA A DIV O OUTRO VERIFICA SE A MUSICA JA ESTA NA LISTA
-      var musicas = [15, 28]
       function carregarMusica(){
         fetch("/musica/musica-geral", {
             method: "POST",
@@ -140,7 +138,7 @@
                           console.log(')Inclui ou não é ' + genero)
                         }
                       document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio
-                      musicas.push(musica_aleatoria)
+                      musicas.push(musica_aleatoria + 1)
                       document.getElementById(`div_${cont}`).innerHTML += `<input type='checkbox' style='display: none' id='chk_${cont}'>`;
                       document.getElementById(`div_${cont}`).innerHTML += `<div class='like' id='like_${cont}' onclick='curtir(${musicas[cont - 1]}, ${cont})'></div>`
                       } else {
@@ -148,18 +146,15 @@
                           musica_aleatoria  = Number(Math.floor(Math.random() * Number(json.musica_todas.length)))
                           console.log('Inclui')
                         }
-                      musicas.push(musica_aleatoria)
+                      musicas.push(musica_aleatoria + 1)
                       document.getElementById(`musica${cont}`).src = json.musica_todas[musica_aleatoria].audio;
                       document.getElementById(`div_${cont}`).innerHTML += `<input type='checkbox' style='display: none'id='chk_${cont}'>`;
                       document.getElementById(`div_${cont}`).innerHTML += `<div class='like' id='like_${cont}' onclick='curtir(${musicas[cont - 1]}, ${cont})'></div>
                       `
-                      // let check = document.createElement('input');
-                      // check.type = 'checkbox';
-                      // check.id = `chk_${cont}`
                       
                     }
                   }                
-                  // console.log('',musicas)
+                  console.log('',musicas)
                       ver_curtidas()
                   });
                 })
