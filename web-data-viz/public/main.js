@@ -10,6 +10,11 @@
   function local_estatistica(){
     window.location.href = 'estatistica.html'
   }
+
+  function local_hist(){
+    window.location.href = 'historico.html'
+  }
+
   function local_index(){
     window.location.href = 'index.html'
   }

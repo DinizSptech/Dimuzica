@@ -32,7 +32,24 @@ function buscarGrafico(req, res) {
                   );
           }
 
+          function pegarUsers(req, res) {
+            console.log('pegarUsers')
+                  graficoModel.get_users()
+                      .then( function (resultadoAutenticar){
+                          res.json({
+                            usuarios: resultadoAutenticar
+                          });
+                      }).catch(
+                          function (erro) {
+                              console.log(erro);
+                              console.log("\nErro em pegar todas os usuários! Erro:", erro.sqlMessage);
+                              res.status(500).json(erro.sqlMessage);
+                          }
+                      );
+              }
+
 module.exports = {
+    pegarUsers,
     buscarGrafico,
     buscarLikes
 }

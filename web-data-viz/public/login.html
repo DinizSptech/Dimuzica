@@ -9,19 +9,19 @@
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
   <script src="./js/sessao.js"></script>
 </head>
-<body>
+<body class="log">
   <div class="header">
     <div class="inicio_header">
       <div class="header_button" onclick="local_estatistica()">
         <img src="./assets/stats.png"  alt="estatisticas">
         <div>Estatisticas</div>
       </div>
-      <div  class="header_button" onclick="local_sobremim()">
+      <div  class="header_button sobre" onclick="local_sobremim()">
         <img src="./assets/vinil.png" alt="vinil"> 
         <div>Sobre mim</div>
       </div>
       <div class="header_button" onclick="local_index()">
-        <img src="./assets/home.png"  alt="estatisticas"> 
+        <img src="./assets/home.png"  alt="home"> 
         <div>Início</div>
       </div>
     </div>
@@ -37,19 +37,22 @@
           <span id="mensagem_erro"></span>
         </div>
       </div>
-    <div class="info">
+      <div id="login">
 
-      <div class="input_holder">
-        Email
-        <input type="text" id="email_input" class="input" value="t1">
-      </div>
+        <div class="info">
+          
+          <div class="input_holder">
+            Email
+            <input type="text" id="email_input" class="input">
+          </div>
       <div class="input_holder">  
         Senha
-        <input type="password" id="senha_input" class="input" value="1234@@@@">
+        <input type="password" id="senha_input" class="input">
       </div>
       <button onclick="entrar()">Login</button>
       <div id="div_aguardar" class="loading-div">
         <img src="./assets/circle-loading.gif" id="loading-gif">
+      </div>
     </div>
     </div>
   </body>

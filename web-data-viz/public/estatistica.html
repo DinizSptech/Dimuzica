@@ -9,19 +9,19 @@
   <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>     
 </head>
-<body class="home" onload="mostrarLikes()">
+<body onload="mostrarLikes(), isLogged()">
   <div class="header">
     <div class="inicio_header">
-      <div class="header_button" onclick="local_estatistica()">
-        <img src="./assets/stats.png"  alt="estatisticas">
-        <div>Estatisticas</div>
-      </div>
-      <div  class="header_button" onclick="local_sobremim()">
+        <div class="header_button" onclick="local_estatistica()">
+          <img src="./assets/stats.png"  alt="estatisticas">
+          <div>Estatisticas</div>
+        </div>
+      <div  class="header_button sobre" onclick="local_sobremim()">
         <img src="./assets/vinil.png" alt="vinil"> 
         <div>Sobre mim</div>
       </div>
       <div class="header_button" onclick="local_index()">
-        <img src="./assets/home.png"  alt="estatisticas"> 
+        <img src="./assets/home.png"  alt="home"> 
         <div>Início</div>
       </div>
     </div>
@@ -32,13 +32,16 @@
       </div>
     </div></style>
     <body>
+      <div class="kpis">
+        Total de usuários:  <div id="div_kpiUser">  </div>
+      </div>
         <div class="dashboards">
-            <div>
-              Gráfico de quantidade de usuários por genero
+            <div class="center">
+              <div class="musica_titulo">Gráfico de quantidade de usuários por genero</div>
                 <canvas id="grafico1" style="height: 80vh; width: 40vw;"></canvas>
             </div>
-            <div>
-              Gráfico de curtidas
+            <div class="center">
+              <div class="musica_titulo">Gráfico de curtidas</div>
               <canvas id="grafico2" style="height: 80vh; width: 40vw;"></canvas>
             </div>
         </div>
@@ -46,16 +49,40 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
       <script>
+
+function isLogged(){
+  var user = sessionStorage.NOME_USUARIO 
+  console.log(user)
+    if (!user){
+      document.getElementById('button_hist').style.display = 'block'
+    }
+  }
+
         var generos = []
         var numeros = []
         var musicas = []
         var curtidas = []
 
+
+        function kpiUser(){
+          fetch("/grafico/kpi-users", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+          }).then(function (resposta) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    div_kpiUser.innerHTML = json.usuarios[0].total
+                })
+              })
+            } 
         
 
         function mostrarLikes() {
           fetch("/grafico/grafico-likes", {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -82,6 +109,7 @@
                     data: {
                     labels: musicas,  
                     datasets: [{
+                      label: 'Curtidas' ,
                       data: curtidas,  
                       backgroundColor: ['rgb(255, 0, 0)', 'rgb(255, 165, 0)', 'rgb(255, 255, 0)', 'rgb(0, 255, 0)', 'rgb(0, 0, 255)', 'rgb(75, 0, 130)', 'rgb(238, 130, 238)'],
                       borderColor: ['rgb(0,0,0)'],
@@ -97,7 +125,6 @@
           
         function mostrarGrafico() {
           fetch("/grafico/grafico-dados", {
-            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -132,6 +159,7 @@
                       
                     
                   });
+                  kpiUser()
                 })
               })
             } 

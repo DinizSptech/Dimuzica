@@ -9,16 +9,26 @@ function buscar_genero() {
     return database.executar(instrucaoSql);
 }
 
+function get_users() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function get_users(): ")
+    var instrucaoSql = `
+        SELECT count(idUsuario) as total FROM usuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscar_likes() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscar_likes(): ")
     var instrucaoSql = `
-        SELECT titulo,count(fkMusica) as qtd_likes FROM musica JOIN curtida ON idMusica = fkMusica GROUP BY titulo ORDER BY qtd_likes DESC;
+        SELECT titulo,count(fkMusica) as qtd_likes FROM musica JOIN curtida ON idMusica = fkMusica GROUP BY titulo ORDER BY titulo ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
+    get_users,
     buscar_genero,
     buscar_likes
 };
