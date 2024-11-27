@@ -105,12 +105,13 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-
+                  
                   for(var idDiv = 1; idDiv<= 15; idDiv++){
                     for(var cont = 0; cont < json.curtidas.length; cont++){{
-                      if(musicas[idDiv] == json.musica_todas[musica_aleatoria].audio){ 
+                      if(musicas[idDiv - 1] == json.curtidas[cont].fkMusica){ 
                         console.log('Musica já curtida')
-                        document.getElementById(`like_${idDiv}`).innerHTML = true
+                        document.getElementById(`like_${idDiv}`).style.background = 'red'
+                        document.getElementById(`chk_${idDiv}`).checked = true
                       }
                       }
                     }
@@ -153,10 +154,11 @@
                       `
                       
                     }
-                  }                
-                  console.log('',musicas)
-                      ver_curtidas()
-                  });
+                  } 
+                  console.log('A SUA ARRAY DO BD DE MUSICAS É', json.musica_todas)
+                  console.log(musicas)
+                });
+                ver_curtidas()
                 })
               }
     // CURTIDA, USA APENAS O PARAMETRO DA MUSICA, IDUSUARIO VEM COM O AUTENTICAR
